@@ -1,3 +1,17 @@
+const tasks = {
+    data: []
+}
+
+const updateTasks = () => {
+    console.info('Observe watch changes...')
+    Array.observe(tasks.data, (changes) => {
+        let index = null
+        let value = ''
+        let status = null
+        console.warn(changes)
+    })
+}
+
 const addTask = () => {
     let input = document.querySelector('#form-add input[type="text"]')
     let desc = input.value
@@ -7,9 +21,9 @@ const addTask = () => {
     input.value = ''
 }
 
-const tasks = {
-    data: []
-}
+//init
+updateTasks()
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     let formAdd = document.getElementById('form-add')
@@ -30,7 +44,6 @@ document.addEventListener('click', (event) => {
                     tasks.data.splice(index, 1)
                 }
             })
-            console.log('Tarefa concluída com sucesso!')
         }
     }
 })
