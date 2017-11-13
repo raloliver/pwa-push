@@ -8,7 +8,40 @@ const updateTasks = () => {
         let index = null
         let value = ''
         let status = null
-        console.warn(changes)
+
+        //CRUD with observer (+ polyfill)
+        if (changes[0].type === 'splice') {
+            index = changes[0].index
+            value = changes[0].object[index]
+            status = (changes[0].addedCount > 0) ? 'created' : 'removed'
+        }
+
+        if (changes[0].type === 'update') {
+            index = changes[0].name
+            value = changes[0].object[index]
+            status = updated
+        }
+
+        if (!value && status === 'created' && status === 'updated') {
+            return
+        }
+
+        let taskSpot = document.getElementById('tasks')
+
+        if (status === 'removed') {
+            let listTasks = document.querySelectorAll('#tasks li')
+            taskSpot.removeChild(listTasks[index])
+        }
+
+        if (status === 'created') {
+            let newTask = document.createElement('li')
+            newTask.innerHTML = value
+            taskSpot.appendChild(newTask)
+        }
+
+        if (status === 'updated') {
+            console.warn('#TODO')
+        }
     })
 }
 
@@ -26,6 +59,17 @@ updateTasks()
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
+    //fixed array problem
+    let listTasks = document.getElementById('tasks')
+    let listContent = ''
+
+    for (let index = 0; index < tasks.data.length; index++) {
+        listContent += `<li>${tasks.data[i]}</li>`
+    }
+
+    listTasks.innerHTML = listContent
+
+    //add task and clean form
     let formAdd = document.getElementById('form-add')
     formAdd.addEventListener('submit', (event) => {
         event.preventDefault()
