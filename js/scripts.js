@@ -1,8 +1,8 @@
-const tasks = {
-    data: []
-}
+let tasks = window.localStorage.getItem('tasks') || '{"data": []}'
 
-const updateTasks = () => {
+tasks = JSON.parse(tasks)
+
+let updateTasks = () => {
     console.info('Observe watch changes...')
     Array.observe(tasks.data, (changes) => {
         let index = null
@@ -42,10 +42,12 @@ const updateTasks = () => {
         if (status === 'updated') {
             console.warn('#TODO')
         }
+
+        window.localStorage.setItem('tasks', JSON.stringify(tasks))
     })
 }
 
-const addTask = () => {
+let addTask = () => {
     let input = document.querySelector('#form-add input[type="text"]')
     let desc = input.value
 
