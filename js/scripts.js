@@ -2,7 +2,7 @@ let tasks = window.localStorage.getItem('tasks') || '{"data": []}'
 
 tasks = JSON.parse(tasks)
 
-let updateTasks = () => {
+const updateTasks = () => {
     console.info('Observe watch changes...')
     Array.observe(tasks.data, (changes) => {
         let index = null
@@ -47,7 +47,7 @@ let updateTasks = () => {
     })
 }
 
-let addTask = () => {
+const addTask = () => {
     let input = document.querySelector('#form-add input[type="text"]')
     let desc = input.value
 
@@ -59,14 +59,13 @@ let addTask = () => {
 //init
 updateTasks()
 
-
 document.addEventListener('DOMContentLoaded', (event) => {
     //fixed array problem
     let listTasks = document.getElementById('tasks')
     let listContent = ''
 
     for (let index = 0; index < tasks.data.length; index++) {
-        listContent += `<li>${tasks.data[i]}</li>`
+        listContent += `<li>${tasks.data[index]}</li>`
     }
 
     listTasks.innerHTML = listContent
