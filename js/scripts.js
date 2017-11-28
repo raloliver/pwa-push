@@ -92,3 +92,14 @@ document.addEventListener('click', (event) => {
         }
     }
 })
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('./sw.js')
+        .then((reg) => {
+            console.log('SW Registrado');
+        })
+        .catch((error) => {
+            console.log('Error: ' + error); 
+        })
+}
