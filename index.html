@@ -10,9 +10,23 @@
     <link rel="apple-touch-icon" href="./img/512.png">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="manifest" href="manifest.json">
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA3FazTZ-WwQmCzIjg0-xq_XNJR0JEeHtA",
+            authDomain: "pwa-push-raloliver.firebaseapp.com",
+            databaseURL: "https://pwa-push-raloliver.firebaseio.com",
+            projectId: "pwa-push-raloliver",
+            storageBucket: "",
+            messagingSenderId: "652963141904"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src="js/o.o.polyfill.js"></script>
     <script src="js/a.o.polyfill.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/push.js"></script>
     <title>PWA Push</title>
 </head>
 
@@ -24,7 +38,7 @@
     <div id="content" class="container">
         <form id="form-add" class="line">
             <input type="text" placeholder="Just Do It!" class="two columns">
-            <input type="submit" value="+" class="button featured one columns">            
+            <input type="submit" value="+" class="button featured one columns">
         </form>
 
         <ul id="tasks">
