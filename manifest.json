@@ -35,5 +35,7 @@
     "start_url": "index.html",
     "display": "standalone",
     "background_color": "#1EAEDB",
-    "theme_color": "#1EAEDB"
+    "theme_color": "#1EAEDB",
+    "gsm_sender_id": "103953800507",
+    "gsm_user_visible_only": true
 }
